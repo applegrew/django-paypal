@@ -157,6 +157,8 @@ Paypal Payment Data Transfer (PDT) allows you to display transaction details to 
             ...
     The decorator checks for any GET parameters corresponding to a PDT call and adds the keyword arguments `pdt_active`, `pdt_failed` and `pdt` to the view call.
 
+1. Set `PAYPAL_IGNORE_INVALID_PDT` to `True` to stop saving data about failed transactions. This might save you from an attack of bad inserts.
+
 
 Using PayPal Payments Standard with Subscriptions:
 --------------------------------------------------

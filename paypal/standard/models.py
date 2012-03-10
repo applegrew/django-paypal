@@ -245,8 +245,9 @@ class PayPalStandardBase(Model):
 
         """
         self.response = self._postback()
-        self._verify_postback()  
-        if not self.flag:
+        self._verify_postback()
+        invalid_paypal_obj = self.flag
+        if not invalid_paypal_obj:
             if self.is_transaction():
                 if self.payment_status not in self.PAYMENT_STATUS_CHOICES:
                     self.set_flag("Invalid payment_status. (%s)" % self.payment_status)
@@ -262,7 +263,9 @@ class PayPalStandardBase(Model):
                 # @@@ Run a different series of checks on recurring payments.
                 pass
         
-        self.save()
+        if not invalid_paypal_obj or not settings.IGNORE_INVALID_PDT:
+            self.save()
+
         self.send_signals()
 
     def verify_secret(self, form_instance, secret):
