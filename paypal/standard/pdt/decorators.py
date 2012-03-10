@@ -2,7 +2,7 @@
 
 from paypal.standard.pdt.models import PayPalPDT
 from paypal.standard.pdt.forms import PayPalPDTForm
-
+from django.views.decorators.http import require_GET
 
 def pdt(f):
     """Parses out GET parameters corresponding to a paypal PDT request and adds `pdt_active`, `pdt_failed` and `pdt` to the call **kwargs.
