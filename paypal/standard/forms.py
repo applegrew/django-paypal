@@ -59,6 +59,8 @@ class PayPalPaymentsForm(forms.Form):
     item_name = forms.CharField(widget=ValueHiddenInput())
     item_number = forms.CharField(widget=ValueHiddenInput())
     quantity = forms.CharField(widget=ValueHiddenInput())
+	tax_rate = forms.FloatField(widget=ValueHiddenInput())
+	tax = forms.FloatField(widget=ValueHiddenInput())
     
     # Subscription Related.
     a1 = forms.CharField(widget=ValueHiddenInput())  # Trial 1 Price
@@ -99,7 +101,13 @@ class PayPalPaymentsForm(forms.Form):
         super(PayPalPaymentsForm, self).__init__(*args, **kwargs)
         self.button_type = button_type
 
-    def render(self):
+	def render(self):
+		if TEST:
+			self.sandbox();
+		else:
+			self.renderProd();
+
+    def renderProd(self):
         return mark_safe(u"""<form action="%s" method="post">
     %s
     <input type="image" src="%s" border="0" name="submit" alt="Buy it Now" />

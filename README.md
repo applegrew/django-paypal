@@ -15,6 +15,7 @@ PayPal Payments Pro allows you to accept payments on your website. It contains t
 
 There is currently an active discussion over the handling of some of the finer points of the PayPal API and the evolution of this code base - check it out over at [Django PayPal on Google Groups](http://groups.google.com/group/django-paypal).
 
+**Note:** When using this module for production code, then set `PAYPAL_TEST` to `False`. If you do not set this then it is assumed to be `True`! When this flag is enabled then all traffics are directed towards [Paypal Sandbox](https://developer.paypal.com). Make sure you have an account on that and have created some test accounts.
 
 Using PayPal Payments Standard IPN:
 -------------------------------
@@ -65,6 +66,8 @@ Using PayPal Payments Standard IPN:
         <h1>Show me the money!</h1>
         <!-- writes out the form tag automatically -->
         {{ form.render }}
+
+    **Note:** Do not use `PayPalPaymentsForm` for production code. Instead at least use `PayPalEncryptedPaymentsForm`. (See the section - Using PayPal Payments Standard with Encrypted Buttons). If that is not possible then generate a [hosted button from Paypal](https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_ButtonMgrAPIIntro#id093VD0JE0Y4).
 
 1.  When someone uses this button to buy something PayPal makes a HTTP POST to 
     your "notify_url". PayPal calls this Instant Payment Notification (IPN). 
@@ -128,6 +131,7 @@ Paypal Payment Data Transfer (PDT) allows you to display transaction details to 
         INSTALLED_APPS = (... 'paypal.standard.pdt', ...)
         
         PAYPAL_IDENTITY_TOKEN = "xxx"
+		PAYPAL_RECEIVER_EMAIL = "yourpaypalemail@example.com"
 
 1.  Create a view that uses `PayPalPaymentsForm` just like in PayPal IPN.
 
@@ -195,7 +199,7 @@ Use this method to encrypt your button so sneaky gits don't try to hack it. Than
         
     [https://www.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-cert](https://www.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-cert)
 
-    [https://www.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-cert](https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-cert)
+    [https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-cert](https://www.sandbox.paypal.com/us/cgi-bin/webscr?cmd=_profile-website-cert)
 
 1.  Copy your `cert id` - you'll need it in two steps. It's on the screen where
     you uploaded your public key.
