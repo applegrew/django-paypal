@@ -103,9 +103,9 @@ class PayPalPaymentsForm(forms.Form):
 
     def render(self):
         if TEST:
-            self.sandbox();
+            return self.sandbox();
         else:
-            self.renderProd();
+            return self.renderProd();
 
     def renderProd(self):
         return mark_safe(u"""<form action="%s" method="post">
