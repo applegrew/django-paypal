@@ -146,8 +146,9 @@ Paypal Payment Data Transfer (PDT) allows you to display transaction details to 
             (r'^paypal/pdt/', include('paypal.standard.pdt.urls')),
             ...
         )
-    Alternatively, you can use the pdt decorator to work with PDT information in one of your own views.
+    **Alternatively**, you can use the pdt decorator to work with PDT information in one of your own views.
     To do this, add the decorator to one of your views.
+
         # views.py
         from paypal.standard.pdt.decorators import pdt
 
