@@ -14,8 +14,8 @@ def pdt(dummy=None, item_check_callable=None):
     if the item isn't valid. This function should check that `mc_gross`, `mc_currency` `item_name` and
     `item_number` are all correct.
 
-	`dummy` DO NOT set value for this. So when you want to set value for `item_check_callable` use named param.
-	So it would be @pdt(item_check_callable=func). When the `dummy` is a callable `f` then it behaves as just @pdt(f).
+    `dummy` DO NOT set value for this. So when you want to set value for `item_check_callable` use named param.
+    So it would be @pdt(item_check_callable=func). When the `dummy` is a callable `f` then it behaves as just @pdt(f).
     """
 
     def inner_pdt(f):
