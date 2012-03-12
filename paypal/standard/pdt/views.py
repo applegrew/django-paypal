@@ -7,7 +7,7 @@ from paypal.standard.pdt.decorators import pdt
  
 @require_GET
 @pdt
-def pdt(request, pdt_active=True, pdt_failed=False, pdt_obj=None, item_check_callable=None, template="pdt/pdt.html", context=None):
+def pdt(request, pdt_active=True, pdt_failed=False, pdt_obj=None, template="pdt/pdt.html", context=None):
     """Payment data transfer implementation: http://tinyurl.com/c9jjmw"""
     context = context or {} 
     context.update({"failed":pdt_failed, "pdt_obj":pdt_obj})
