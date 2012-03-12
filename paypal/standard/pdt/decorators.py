@@ -61,7 +61,10 @@ def pdt(dummy=None, item_check_callable=None):
             else:
                 pass # we ignore any PDT requests that don't have a transaction id
     
-            kwargs.update({'pdt_active': pdt_active, 'pdt_failed': failed, 'pdt_obj': pdt_obj})
+            #pdt_active = True => txn_id was not None
+            #pdt_failed = True => pdt_obj has invalid data
+            #pdt_duplicate = True => txn_id is known and already processed. pdt_obj contains that data.
+            kwargs.update({'pdt_active': pdt_active, 'pdt_failed': failed, 'pdt_obj': pdt_obj, 'pdt_duplicate': pdt_duplicate})
             return f(request, *args, **kwargs)
     
         return aux
