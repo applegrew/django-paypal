@@ -3,7 +3,7 @@
 from django.db import models
 from django.conf import settings
 from paypal.standard.helpers import duplicate_txn_id, check_secret
-from paypal.standard.conf import RECEIVER_EMAIL, POSTBACK_ENDPOINT, SANDBOX_POSTBACK_ENDPOINT
+from paypal.standard.conf import RECEIVER_EMAIL, POSTBACK_ENDPOINT, SANDBOX_POSTBACK_ENDPOINT, IGNORE_INVALID_PDT
 
 ST_PP_ACTIVE = 'Active'
 ST_PP_CANCELLED = 'Cancelled'
@@ -263,7 +263,7 @@ class PayPalStandardBase(Model):
                 # @@@ Run a different series of checks on recurring payments.
                 pass
         
-        if not (invalid_paypal_obj and settings.IGNORE_INVALID_PDT):
+        if not (invalid_paypal_obj and IGNORE_INVALID_PDT):
             self.save()
 
         self.send_signals()

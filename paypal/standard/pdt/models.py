@@ -7,7 +7,7 @@ from django.conf import settings
 from django.http import QueryDict
 from django.utils.http import urlencode
 from paypal.standard.models import PayPalStandardBase
-from paypal.standard.conf import POSTBACK_ENDPOINT, SANDBOX_POSTBACK_ENDPOINT
+from paypal.standard.conf import POSTBACK_ENDPOINT, SANDBOX_POSTBACK_ENDPOINT, IGNORE_INVALID_PDT
 from paypal.standard.pdt.signals import pdt_successful, pdt_failed
 
 # ### Todo: Move this logic to conf.py:
@@ -76,7 +76,7 @@ class PayPalPDT(PayPalStandardBase):
                 except ValueError, e:
                     pass
 
-        if not self.flag:
+        if not (self.flag and IGNORE_INVALID_PDT):
             qd = QueryDict('', mutable=True)
             qd.update(response_dict)
             qd.update(dict(ipaddress=self.ipaddress, st=self.st, flag_info=self.flag_info))
