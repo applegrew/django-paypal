@@ -5,7 +5,7 @@ class PayPalSettingsError(Exception):
     
 
 TEST = getattr(settings, "PAYPAL_TEST", True)
-IGNORE_INVALID_PDT = getattr(settings, "PAYPAL_IGNORE_INVALID_PDT", True)
+IGNORE_INVALID_PDT = getattr(settings, "PAYPAL_IGNORE_INVALID_PDT", False)
 RECEIVER_EMAIL = settings.PAYPAL_RECEIVER_EMAIL
 
 

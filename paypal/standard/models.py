@@ -263,7 +263,7 @@ class PayPalStandardBase(Model):
                 # @@@ Run a different series of checks on recurring payments.
                 pass
         
-        if not invalid_paypal_obj or not settings.IGNORE_INVALID_PDT:
+        if not (invalid_paypal_obj and settings.IGNORE_INVALID_PDT):
             self.save()
 
         self.send_signals()

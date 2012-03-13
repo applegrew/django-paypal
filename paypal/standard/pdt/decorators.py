@@ -24,7 +24,12 @@ def pdt(dummy=None, item_check_callable=None):
         def aux(request, *args, **kwargs):
             pdt_obj = None
             pdt_active = False
-            txn_id = request.GET.get('tx')
+            txn_id = request.GET.get('tx', None)
+            if txn_id is not None:
+                txn_id = txn_id.strip()
+                if not txn_id: #i.e. empty txn_id
+                    txn_id = None
+            
             failed = False
             pdt_duplicate = False
             if txn_id is not None:
