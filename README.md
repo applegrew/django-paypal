@@ -2,6 +2,11 @@ Django PayPal
 =============
 
 
+Note
+----
+
+This is a fork of `dcramer/django-paypal`. This contains few of the fixes which are currently (as of 16Mar12) in the Pull Request of dcramer. I felt they were quite good changes, so did not wait and created my own version, topped with some of my own fixes.
+
 About
 -----
 
@@ -22,7 +27,7 @@ Using PayPal Payments Standard IPN:
 
 1. Download the code from GitHub:
 
-        git clone git://github.com/dcramer/django-paypal.git paypal
+        git clone git://github.com/applegrew/django-paypal.git paypal
 
 1. Edit `settings.py` and add  `paypal.standard.ipn` to your `INSTALLED_APPS` 
    and `PAYPAL_RECEIVER_EMAIL`:
