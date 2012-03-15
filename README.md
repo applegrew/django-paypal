@@ -5,7 +5,7 @@ Django PayPal
 Note
 ----
 
-This is a fork of `dcramer/django-paypal`. This contains few of the fixes which are currently (as of 16Mar12) in the Pull Request of dcramer. I felt they were quite good changes, so did not wait and created my own version, topped with some of my own fixes.
+This is a fork of `dcramer/django-paypal`. This contains few of the fixes which are currently (as of 16Mar12) in the Pull Request queue of dcramer. I felt they were quite good changes, so I did not wait and created my own version; topped with some of my own fixes.
 
 About
 -----
